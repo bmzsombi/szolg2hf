@@ -5,6 +5,7 @@ public class Movie {
 	int year;
 	String director;
 	String[] actor;
+	int id;
 	
 	public Movie(String title, int year, String director, String[] actors) {
 		this.title = title;
@@ -12,4 +13,6 @@ public class Movie {
 		this.director = director;
 		this.actor = actors;
 	}
+	
+	
 }
