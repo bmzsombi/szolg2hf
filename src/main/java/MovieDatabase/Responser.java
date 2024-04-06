@@ -1,16 +1,39 @@
 package MovieDatabase;
 
-import java.util.ArrayList;
+import jakarta.xml.bind.annotation.XmlElement;
+
 
 public class Responser implements IResponser{
-	ArrayList<Movie> movielist = new ArrayList<Movie>();
-	
+	@XmlElement
+	static Movies movies = new Movies();
+	int id = 0;
 	
 	@Override
-	public ArrayList<Movie> getMovies() {
-		String[] szineszek = new String[1];
+	public Movies getMovies() {
+		String[] szineszek = new String[2];
 		szineszek[0] = "pityu";
-		movielist.add(new Movie("asd", 2001, "hghg", szineszek));
-		return movielist;
+		szineszek[1] = "beci";
+		movies.addMovie(new Movie("asd", 2001, "hghg", szineszek));
+		String[] asd = new String[1];
+		asd[0] = "lali";
+		movies.addMovie(new Movie("ert", 2056, "ASDASD", asd));
+		return movies;
+	}
+	
+	@Override
+	public Movie getMovie(int id) {
+		String[] szineszek = new String[2];
+		szineszek[0] = "pityu";
+		szineszek[1] = "beci";
+		movies.addMovie(new Movie("asd", 2001, "hghg", szineszek));
+		String[] asd = new String[1];
+		asd[0] = "lali";
+		movies.addMovie(new Movie("ert", 2056, "ASDASD", asd));
+		return movies.getMovie(id);
+	}
+	
+	@Override
+	public int addMovie(String title, int year, String director, String[] actors) {
+		return movies.addMovieResID(new Movie(title, year, director, actors));
 	}
 }
