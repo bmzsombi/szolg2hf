@@ -1,12 +1,14 @@
 package MovieDatabase;
 
+import java.util.ArrayList;
+
 import jakarta.xml.bind.annotation.XmlElement;
 
 
 public class Responser implements IResponser{
 	@XmlElement
 	static Movies movies = new Movies();
-	int id = 0;
+	
 	
 	@Override
 	public Movies getMovies() {
@@ -33,7 +35,18 @@ public class Responser implements IResponser{
 	}
 	
 	@Override
-	public int addMovie(String title, int year, String director, String[] actors) {
-		return movies.addMovieResID(new Movie(title, year, director, actors));
+	public int addMovie(Movie movie) {
+		return movies.addMovieResID(movie);
 	}
+	
+	@Override
+	public void deleteMovie(int id) {
+		movies.removeMovieByID(id);
+	}
+	
+	@Override
+	public ArrayList<Integer> getMoviesByYear() {
+		return movies.getMoviesIdByYear(2001);
+	}
+	
 }

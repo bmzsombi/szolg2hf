@@ -18,6 +18,8 @@ public class Movies {
 	@XmlElement(name="movie")
 	ArrayList<Movie> movielist = new ArrayList<Movie>();
 	int id = 0;
+	@XmlElement(name="id")
+	ArrayList<Integer> sortedmovies = new ArrayList<Integer>();
 	
 	public ArrayList<Movie> getMovies(){
 		return this.movielist;
@@ -74,6 +76,20 @@ public class Movies {
 			if (mv.getID() == id) {
 				movielist.remove(mv);
 			}
+		}
+	}
+	
+	public ArrayList<Integer> getMoviesIdByYear(int year) {
+		for (Movie mv: movielist) {
+			if (year == mv.year) {
+				sortedmovies.add(mv.year);
+			}
+		}
+		if (sortedmovies.isEmpty()) {
+			throw new WebApplicationException(Response.Status.NOT_FOUND);
+		}
+		else {
+			return sortedmovies;
 		}
 	}
 }
