@@ -16,32 +16,41 @@ import jakarta.ws.rs.core.MediaType;
 
 
 @Path("MovieDatabase")
-@Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public interface IResponser {
+	@Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+	@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 	@GET
 	@Path("movies")
-	@Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-	@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 	public Movies getMovies();
 	
-	@GET
-	@Path("movies/{id}")
 	@Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 	@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+	@GET
+	@Path("movies/{id}")
 	public Movie getMovie(@PathParam("id") int id);
 	
 	@POST
 	@Path("movies")
 	@Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 	@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-	public int addMovie(Movie movie);
+	public Id addMovie(Movie movie);
 	
+	@Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+	@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+	@PUT
+	@Path("movies/{id}")
+	public void updateMovie(@PathParam("id") int id, Movie movie);
+	
+	@Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+	@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 	@DELETE
 	@Path("movies/{id}")
 	public void deleteMovie(@PathParam("id") int id);
 	
+	@Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+	@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 	@GET
 	@Path("movies/find")
-	public ArrayList<Integer> getMoviesByYear();
+	public ArrayList<Id> getMoviesByYear(@QueryParam("year") int year,
+			@QueryParam("orderby") String field );
 }

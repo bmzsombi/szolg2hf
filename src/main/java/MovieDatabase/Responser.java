@@ -9,34 +9,24 @@ public class Responser implements IResponser{
 	@XmlElement
 	static Movies movies = new Movies();
 	
-	
 	@Override
 	public Movies getMovies() {
-		String[] szineszek = new String[2];
-		szineszek[0] = "pityu";
-		szineszek[1] = "beci";
-		movies.addMovie(new Movie("asd", 2001, "hghg", szineszek));
-		String[] asd = new String[1];
-		asd[0] = "lali";
-		movies.addMovie(new Movie("ert", 2056, "ASDASD", asd));
 		return movies;
 	}
 	
 	@Override
 	public Movie getMovie(int id) {
-		String[] szineszek = new String[2];
-		szineszek[0] = "pityu";
-		szineszek[1] = "beci";
-		movies.addMovie(new Movie("asd", 2001, "hghg", szineszek));
-		String[] asd = new String[1];
-		asd[0] = "lali";
-		movies.addMovie(new Movie("ert", 2056, "ASDASD", asd));
 		return movies.getMovie(id);
 	}
 	
 	@Override
-	public int addMovie(Movie movie) {
+	public Id addMovie(Movie movie) {
 		return movies.addMovieResID(movie);
+	}
+	
+	@Override
+	public void updateMovie(int id, Movie movie) {
+		movies.updateMovie(id, movie);
 	}
 	
 	@Override
@@ -45,8 +35,8 @@ public class Responser implements IResponser{
 	}
 	
 	@Override
-	public ArrayList<Integer> getMoviesByYear() {
-		return movies.getMoviesIdByYear(2001);
+	public ArrayList<Id> getMoviesByYear(int year, String field) {
+		return movies.getMoviesIdByYear(year, field);
 	}
 	
 }

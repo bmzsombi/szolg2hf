@@ -10,36 +10,60 @@ import jakarta.xml.bind.annotation.XmlType;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
+@XmlType(propOrder = {"title", "year", "director", "actor"})
 @XmlSeeAlso(Movie.class)
-@XmlType
 public class Movie {
-	@XmlElement
+	@XmlElement(name ="title", nillable=true)
 	String title;
-	@XmlElement
+	@XmlElement(name="year", nillable=true)
 	int year;
-	@XmlElement
+	@XmlElement(name= "director", nillable=true)
 	String director;
-	@XmlElement(name="actor")
+	@XmlElement(name="actor", nillable=true)
 	String[] actor;
-	private int id;
+	
+	private Id id = new Id();
 	
 	public Movie() {
 		
 	}
 	
-	public Movie(String title, int year, String director, String[] actors) {
+	public Movie(String title, int year, String director, String[] actor) {
 		this.title = title;
 		this.year = year;
 		this.director = director;
-		this.actor = actors;
+		this.actor = actor;
 	}
 
 	public void setID(int id) {
-		this.id = id;
+		this.id.setId(id);
 	}
 	
-	public int getID() {
+	public Id getID() {
 		return this.id;
+	}
+	
+	public void setMovie(Movie movie){
+		this.title = movie.title;
+		this.year = movie.year;
+		this.director = movie.director;
+		this.actor = movie.actor;
+	}
+	
+	public String getTitle() {
+		return this.title;
+	}
+	
+	public String getDirector() {
+		return this.director;
+	}
+	
+	public int getYear() {
+		return this.year;
+	}
+	
+	public String[] getActors() {
+		return actor;
 	}
 	
 }
